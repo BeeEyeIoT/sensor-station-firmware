@@ -1,0 +1,33 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      ncs_version:
+        description: nRF Connect SDK version to build against (selects the build-base image tag)
+        required: true
+        default: v3.1.1
+      version:
+        description: 'Release version, without the leading "v" (default: CalVer YYYY.MM.DD.<run_number>)'
+        required: false
+
+permissions:
+  contents: write
+  packages: read
+
+jobs:
+  build:
+    uses: BeeEyeIoT/pipelines/.github/workflows/build-firmware.yml@v1
+    with:
+      ncs_version: ${{ inputs.ncs_version }}
+      board: BeeEye/nrf52811
+      extra_west_args: -DOVERLAY_CONFIG=release.conf
+      artifact_paths: |
+        merged.hex
+        workspace/zephyr/zephyr.elf
+
+  release:
+    needs: build
+    uses: BeeEyeIoT/pipelines/.github/workflows/release-firmware.yml@v1
+    with:
+      version: ${{ inputs.version }}
