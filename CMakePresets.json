@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "release",
+            "displayName": "BeeEye/nrf52811 (Release)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "BOARD": "BeeEye/nrf52811",
+                "BOARD_ROOT": "${sourceDir}",
+                "CMAKE_BUILD_TYPE": "RelMinSize",
+                "OVERLAY_CONFIG": "release.conf"
+            }
+        }
+    ]
+}
