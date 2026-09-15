@@ -22,7 +22,7 @@ jobs:
       ncs_version: ${{ inputs.ncs_version }}
       cmake_preset: release
       artifact_paths: |
-        merged.hex
+        workspace/zephyr/zephyr.hex
         workspace/zephyr/zephyr.elf
 
   release:
