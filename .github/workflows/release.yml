@@ -22,8 +22,8 @@ jobs:
       ncs_version: ${{ inputs.ncs_version }}
       cmake_preset: release
       artifact_paths: |
-        workspace/zephyr/zephyr.hex
-        workspace/zephyr/zephyr.elf
+        zephyr/zephyr.hex
+        zephyr/zephyr.elf
 
   release:
     needs: build
