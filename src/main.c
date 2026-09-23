@@ -24,8 +24,8 @@ static atomic_t pairing_mode = ATOMIC_INIT(1);
 static k_tid_t main_thread_tid = NULL;
 static struct gpio_callback pair_button_cb;
 
-void fillMeasureFromSensor(struct Measure* measure, struct Sensor* sensor);
-void fillMeasureFromSensorBat(struct Measure* measure, struct Sensor* sensor);
+void fillMeasureFromSensor(struct Measure* measure, const struct Sensor* sensor);
+void fillMeasureFromSensorBat(struct Measure* measure, const struct Sensor* sensor);
 void transmitSensorData(uint64_t cutoff);
 static uint8_t battery_addr_suffix[6];
 static void battery_addr_init(void);
@@ -307,7 +307,7 @@ void transmitSensorData(uint64_t cutoff)
 	LOG_INF("Sent total of %d measures", total_measure_count);
 }
 
-void fillMeasureFromSensor(struct Measure* measure, struct Sensor* sensor) {
+void fillMeasureFromSensor(struct Measure* measure, const struct Sensor* sensor) {
 	measure->sensorAddress[0] = 'B';
 	measure->sensorAddress[1] = 'T';
 	memcpy(measure->sensorAddress + 2, sensor->address, 6);
@@ -321,7 +321,7 @@ void fillMeasureFromSensor(struct Measure* measure, struct Sensor* sensor) {
 	}
 }
 
-void fillMeasureFromSensorBat(struct Measure* measure, struct Sensor* sensor) {
+void fillMeasureFromSensorBat(struct Measure* measure, const struct Sensor* sensor) {
 	measure->sensorAddress[0] = 'B';
 	measure->sensorAddress[1] = 'T';
 	memcpy(measure->sensorAddress + 2, sensor->address, 6);

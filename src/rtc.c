@@ -19,13 +19,7 @@ static const struct device *rtc = DEVICE_DT_GET(DT_NODELABEL(rv3028));
 
 int intinitialize_rtc(void)
 {
-    int ret;
-    
-    // ret = device_init(rtc);
-    // if (ret && ret != -EALREADY) {
-    //     LOG_ERR("Couldn't init RTC device: %d", ret);
-    //     return -ret;
-    // }
+    int ret;        
     
     if (!device_is_ready(rtc)) {
         LOG_ERR("RTC is not ready");
