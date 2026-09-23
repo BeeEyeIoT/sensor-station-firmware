@@ -6,7 +6,7 @@ on:
       ncs_version:
         description: nRF Connect SDK version to build against (selects the build-base image tag)
         required: true
-        default: v3.1.1
+        default: v3.4.1
       version:
         description: 'Release version, without the leading "v" (default: CalVer YYYY.MM.DD.<run_number>)'
         required: false

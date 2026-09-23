@@ -1,6 +1,6 @@
 {
 	"name": "sensor-station-firmware",
-	"image": "ghcr.io/beeeyeiot/build-base:v3.1.1",
+	"image": "ghcr.io/beeeyeiot/build-base:v3.4.1",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
 	"workspaceFolder": "/workspace",
 	"customizations": {

@@ -1,5 +1,6 @@
 board:
   name: BeeEye
+  full_name: BeeEye Sensor Station
   vendor: Myself
   socs:
     - name: nrf52811
