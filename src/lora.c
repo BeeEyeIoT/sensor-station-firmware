@@ -1,5 +1,4 @@
 #include "lora.h"
-#include "uart_print.h"
 
 #include <zephyr/logging/log.h>
 #include <zephyr/device.h>

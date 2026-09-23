@@ -1,5 +1,4 @@
 #include "onewire.h"
-#include "uart_print.h"
 
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/w1.h>

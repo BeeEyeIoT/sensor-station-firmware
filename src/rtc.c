@@ -1,5 +1,3 @@
-#include "uart_print.h"
-
 #include <zephyr/logging/log.h>
 #include <zephyr/device.h>
 #include <zephyr/devicetree.h>
@@ -69,7 +67,7 @@ int get_rtc_ticks(uint64_t* ticks) {
         return ret;
     }
 
-    int64_t seconds = timeutil_timegm64(&tm); // UTC seconds since epoch (1970)
+    int64_t seconds = timeutil_timegm64((const struct tm*)&tm); // UTC seconds since epoch (1970)
 
     if (ticks) {
         *ticks = seconds * 1000ULL + ((int64_t)tm.tm_nsec) / 1000000ULL;

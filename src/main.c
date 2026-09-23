@@ -1,4 +1,3 @@
-#include "uart_print.h"
 #include "vsense.h"
 #include "rtc.h"
 #include "onewire.h"
@@ -155,8 +154,7 @@ static int post(void) {
 	return 0;
 }
 
-static void event_loop(void) {
-	int ret = 0;
+static void event_loop(void) {	
 	uint64_t start = k_uptime_get();
 	uint64_t t_start_transmit = start;
 	uint64_t t_stop_hifreq = 0;

@@ -9,7 +9,6 @@ project(bee-eye)
 
 target_sources(app PRIVATE 
     src/main.c 
-    src/uart_print.c 
     src/vsense.c
     src/rtc.c
     src/onewire.c

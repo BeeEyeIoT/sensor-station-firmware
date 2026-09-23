@@ -1,5 +1,4 @@
 #include "ble_client.h"
-#include "uart_print.h"
 #include "protocol.h"
 
 #include <zephyr/kernel.h>
@@ -60,7 +59,7 @@ static bool data_cb(struct bt_data *data, void *user_data)
 			announceData->sensorData.magic = p->magic == 0xBEEE ? BEE_EYE_MAGIC : 0;
 			announceData->sensorData.data.th.temp = p->temp;
 			announceData->sensorData.data.th.hum = p->hum;
-			announceData->sensorData.crc = crc8(&announceData->sensorData, sizeof(announceData->sensorData) - sizeof(announceData->sensorData.crc), 0x07, 0, false);
+			announceData->sensorData.crc = crc8((const char*)&announceData->sensorData, sizeof(announceData->sensorData) - sizeof(announceData->sensorData.crc), 0x07, 0, false);
 		} else if (data->data_len == sizeof(struct ManufacturerData)) {
 			(void)memcpy(&announceData->sensorData, data->data, data->data_len);
 		}
