@@ -175,8 +175,11 @@ static void event_loop(void) {
 			LOG_INF("Stopping ble scan, sensors found so far = %d", ble_get_sensor_count());
 			ble_client_stop();
 
-			// LOG_INF("Switching to low-freq ble scan, sensors found so far = %d", ble_get_sensor_count());
-			// ble_client_start(2000, 30); // low freq
+			if(IS_ENABLED(CONFIG_BEE_EYE_BLE_LOWFREQ_SCAN)) {
+				LOG_INF("Switching to low-freq ble scan, sensors found so far = %d", ble_get_sensor_count());
+				ble_client_start(CONFIG_BEE_EYE_BLE_LOWFREQ_SCAN_INTERVAL_MS,
+						 CONFIG_BEE_EYE_BLE_LOWFREQ_SCAN_WINDOW_MS);
+			}
 
 			t_start_hifreq = ble_client_get_next_sensor_window();
 			if(t_start_hifreq == 0) {

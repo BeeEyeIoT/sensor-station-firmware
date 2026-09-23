@@ -1,0 +1,32 @@
+mainmenu "Bee Eye sensor station"
+
+menu "Bee Eye"
+
+config BEE_EYE_BLE_LOWFREQ_SCAN
+	bool "Low-frequency BLE scan between high-frequency windows"
+	depends on BT_OBSERVER
+	help
+	  When a high-frequency BLE scan window ends, keep scanning at a
+	  low duty cycle instead of stopping the scanner completely until
+	  the next high-frequency window. Picks up more sensor
+	  advertisements at the cost of higher power consumption.
+
+config BEE_EYE_BLE_LOWFREQ_SCAN_INTERVAL_MS
+	int "Low-frequency scan interval (ms)" if BEE_EYE_BLE_LOWFREQ_SCAN
+	range 3 10240
+	default 2000
+	help
+	  BLE scan interval used during low-frequency scanning, in
+	  milliseconds.
+
+config BEE_EYE_BLE_LOWFREQ_SCAN_WINDOW_MS
+	int "Low-frequency scan window (ms)" if BEE_EYE_BLE_LOWFREQ_SCAN
+	range 3 BEE_EYE_BLE_LOWFREQ_SCAN_INTERVAL_MS
+	default 30
+	help
+	  BLE scan window used during low-frequency scanning, in
+	  milliseconds. Must not exceed the scan interval.
+
+endmenu
+
+source "Kconfig.zephyr"
