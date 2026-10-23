@@ -1,0 +1,15 @@
+/*
+ * BeeEye v0.3-nrf: no dedicated 1-Wire IC, the bus is bit-banged on P0.19.
+ */
+
+/delete-node/ &ow0;
+
+/ {
+	model = "BeeEye-v0.3 Board";
+
+	ow0: w1 {
+		compatible = "zephyr,w1-gpio";
+		gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN | GPIO_PULL_UP)>;
+		label = "ONEWIRE_0";
+	};
+};

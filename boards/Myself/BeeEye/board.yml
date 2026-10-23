@@ -2,5 +2,11 @@ board:
   name: BeeEye
   full_name: BeeEye Sensor Station
   vendor: Myself
+  revision:
+    format: major.minor.patch
+    default: "0.4.0"
+    revisions:
+      - name: "0.3.0"
+      - name: "0.4.0"
   socs:
     - name: nrf52811

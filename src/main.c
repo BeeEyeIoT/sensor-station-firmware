@@ -57,7 +57,7 @@ int main(void)
 	gpio_pin_set_dt(&led, 0);
 
 	// Send banner
-	ret=lora_transmit_text("BeeEye v0.4-nrf");
+	ret=lora_transmit_text("BeeEye v" CONFIG_BOARD_REVISION);
 	if(ret) {
 		LOG_ERR("LoRa TX failed: %d", ret);
 	}
